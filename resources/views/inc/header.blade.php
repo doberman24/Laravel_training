@@ -4,5 +4,6 @@
     <a class="p-2 text-dark" href="{{ route('home') }}">Главная</a>
     <a class="p-2 text-dark" href="{{ route('about') }}">Про нас</a>
     <a class="p-2 text-dark" href="{{ route('contact') }}">Контакты</a>
+    <a class="p-2 text-dark" href="{{ route('contact-message') }}">Сообщения</a>
   </nav>
 </div>
