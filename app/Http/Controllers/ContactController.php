@@ -23,8 +23,10 @@ class ContactController extends Controller
 
     public function all_data()
     {
+        $contact = new Contact();
+
         //Вывод всех записей из базы данных
-        return view('messages', ['data' => Contact::all()]);
+        return view('messages', ['data' => $contact->all()]);
 
         //$contact = new Contact();
         //Вывод всех записей в произвольном порядке
@@ -51,4 +53,36 @@ class ContactController extends Controller
         //Вывод произвольной записи
         //return view('messages', ['data' => $contact->inRandomOrder()->first()]);
     }
+
+    public function showOneMessage($id)
+    {
+        $contact = new Contact();
+        return view('one-message', ['data' => $contact->find($id)]);
+    }
+
+    public function updateMessage($id)
+    {
+        $contact = new Contact();
+        return view('update-message', ['data' => $contact->find($id)]);
+    }
+
+    public function updateMessageSubmit($id, ContactRequest $req)
+    {
+        $contact = Contact::find($id);
+        $contact->name = $req->input('name');
+        $contact->email = $req->input('email');
+        $contact->subject = $req->input('subject');
+        $contact->message = $req->input('message');
+
+        $contact->save();
+
+        return redirect()->route('contact-data-one', $id)->with('success', 'Данные обновлены');
+    }
+
+    public function deleteMessage($id)
+    {
+        Contact::find($id)->delete();
+        return redirect()->route('contact-message')->with('success', 'Данные успешно удалены');
+    }
+
 }
