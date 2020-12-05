@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 
@@ -26,4 +27,18 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+<<<<<<< HEAD
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact-form');
+=======
+Route::get('/contact/data/{id}', [ContactController::class, 'showOneMessage'])->name('contact-data-one');
+
+Route::get('/contact/data/{id}/update', [ContactController::class, 'updateMessage'])->name('contact-update-data');
+
+Route::post('/contact/data/{id}/update', [ContactController::class, 'updateMessageSubmit'])->name('contact-update-submit');
+
+Route::get('/contact/data/{id}/delete', [ContactController::class, 'deleteMessage'])->name('contact-delete');
+
+Route::get('/contact/data', [ContactController::class, 'all_data'])->name('contact-message');
+
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact-form');
+>>>>>>> 1f11488ba3e254c5eccf1b4513418fb061892151

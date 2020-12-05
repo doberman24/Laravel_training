@@ -5,6 +5,8 @@
 @section('content')
     <h1>Страница контактов</h1>
 
+
+
     <form action="{{ route('contact-form') }}" method="POST">
         @csrf
 
